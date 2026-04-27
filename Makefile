@@ -1,0 +1,55 @@
+NAME = cub3D
+SRC_DIR = src
+INC_DIR = inc
+OBJ_DIR = obj
+
+LIBFT_DIR= lib/libft
+MLX42_DIR = lib/MLX42
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX42 = $(MLX42_DIR)/build/libmlx42.a
+
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/inc -I$(MLX42_DIR)/include/MLX42
+LIBS = $(LIBFT) $(MLX42) -ldl -lglfw -lm -pthread
+
+SRC = $(addprefix $(SRC_DIR)/, main.c \
+)
+HEADER = $(addprefix $(INC_DIR)/, cub3d.h \
+)
+
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(MLX42) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) | $(OBJ_DIR)
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX42):
+	cd $(MLX42_DIR) && \
+	cmake -B build && \
+	cmake --build build -j4
+
+clean:
+	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
+
+fclean: clean
+	rm -f $(NAME)
+	rm -rf $(MLX42_DIR)/build
+	$(MAKE) -C $(LIBFT_DIR) fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re
