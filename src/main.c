@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/29 17:41:39 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:11:20 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main(void)
 	map.map_grid = (char *[]){"111111111111", "100000000001", "100001100001", "100000000001", "100000000001", "111111111111"};
 	map.height = 6;
 	map.width = 12;
-	mlx = mlx_init(640, 480, "cub3D", true);
+	mlx = mlx_init(640, 480, "cub3D", false);
 	if (!mlx)
 		return (EXIT_FAILURE);
-	img = mlx_new_image(mlx, mlx->width, mlx->height);
+	img = mlx_new_image(mlx, mlx->height / 3, mlx->height / 3);
 	if (!img)
 		return (EXIT_FAILURE);
 	render_minimap(&map, &img);

@@ -6,12 +6,13 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/29 17:40:35 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:27:35 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "settings.h"
+#include "math.h"
 
 void	fill_block(mlx_image_t **img, int posX, int posY, int wall)
 {
@@ -19,7 +20,8 @@ void	fill_block(mlx_image_t **img, int posX, int posY, int wall)
 	int	y;
 	int	size;
 
-	size = 16;
+	size = 10;
+	ft_printf("%d\n", size);
 	y = 0;
 	while (y < size)
 	{
@@ -38,7 +40,7 @@ void	fill_block(mlx_image_t **img, int posX, int posY, int wall)
 	}
 }
 
-int	render_minimap(t_map *map, mlx_image_t **img)
+void	render_minimap(t_map *map, mlx_image_t **img)
 {
 	int	row;
 	int	col;
@@ -57,5 +59,4 @@ int	render_minimap(t_map *map, mlx_image_t **img)
 		}
 		row++;
 	}
-	return (0);
 }
