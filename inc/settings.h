@@ -1,41 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/30 11:17:07 by nde-sant         ###   ########.fr       */
+/*   Created: 2026/04/29 17:12:25 by nde-sant          #+#    #+#             */
+/*   Updated: 2026/04/29 17:15:45 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef SETTINGS_H
+# define SETTINGS_H
 
-# include "libft.h"
-# include "MLX42.h"
-# include <math.h>
-
-typedef struct s_map
-{
-	char		**map_grid;
-	int			width;
-	int			height;
-
-	int			floor_color;
-	int			ceiling_color;
-
-	char		*north_texture;
-	char		*south_texture;
-	char		*east_texture;
-	char		*west_texture;
-
-/*	t_texture	north;
-	t_texture	east;
-	t_texture	west;
-	t_texture	south; */
-}				t_map;
-
+# define MMAP_BG_COLOR 0x000000FF
+# define MMAP_FG_COLOR 0xFFFFFFFF
 
 #endif

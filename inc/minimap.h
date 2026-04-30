@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/30 11:17:07 by nde-sant         ###   ########.fr       */
+/*   Created: 2026/04/30 11:13:34 by nde-sant          #+#    #+#             */
+/*   Updated: 2026/04/30 11:19:12 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
-# include "libft.h"
-# include "MLX42.h"
-# include <math.h>
-
-typedef struct s_map
+typedef struct	s_vector
 {
-	char		**map_grid;
-	int			width;
-	int			height;
-
-	int			floor_color;
-	int			ceiling_color;
-
-	char		*north_texture;
-	char		*south_texture;
-	char		*east_texture;
-	char		*west_texture;
-
-/*	t_texture	north;
-	t_texture	east;
-	t_texture	west;
-	t_texture	south; */
-}				t_map;
-
+	int	x;
+	int	y;
+}	t_vector ;
 
 #endif

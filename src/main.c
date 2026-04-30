@@ -6,24 +6,32 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/27 14:24:10 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/04/30 11:32:17 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
+
+int	render_minimap(t_map *map, mlx_image_t **img);
 
 int	main(void)
 {
 	mlx_t		*mlx;
-	mlx_image_t	*img;
+	mlx_image_t	*map_img;
+	t_map	map;
 
-	mlx = mlx_init(640, 640, "cub3D", true);
+	map.map_grid = (char *[]){"111111111111", "100000000001", "100001100001", "100000000001", "100000000001", "111111111111"};
+	map.height = 6;
+	map.width = 12;
+	mlx = mlx_init(640, 480, "cub3D", false);
 	if (!mlx)
 		return (EXIT_FAILURE);
-	img = mlx_new_image(mlx, 64, 64);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
+	map_img = mlx_new_image(mlx, mlx->width, mlx->height);
+	if (!map_img)
 		return (EXIT_FAILURE);
-	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+	render_minimap(&map, &map_img);
+	mlx_image_to_window(mlx, map_img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
