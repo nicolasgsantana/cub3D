@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aletude- <aletude-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/29 15:59:00 by aletude-         ###   ########.fr       */
+/*   Updated: 2026/04/30 11:17:07 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "MLX42.h"
+# include <math.h>
 
 typedef struct s_map
 {
