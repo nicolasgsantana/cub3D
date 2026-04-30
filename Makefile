@@ -14,7 +14,7 @@ INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/inc -I$(MLX42_DIR)/include/MLX42
 LIBS = $(LIBFT) $(MLX42) -ldl -lglfw -lm -pthread
 
 SRC = $(addprefix $(SRC_DIR)/,	main.c \
-								minimap/render.c \
+								minimap/render_map.c \
 )
 HEADER = $(addprefix $(INC_DIR)/, cub3d.h \
 )
