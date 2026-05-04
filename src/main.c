@@ -3,24 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 14:09:02 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/05 19:54:13 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
-static void	init_game(t_game *game)
-{
-	ft_bzero(game, sizeof(t_game));
-	game->player.angle = 0.0;
-	game->player.dir.x = 0.0;
-	game->player.dir.y = 0.0;
-}
-*/
+int		render_minimap(t_map *map, mlx_image_t **img);
+void	input_hook(void	*param);
 
 int	main(void)
 {
