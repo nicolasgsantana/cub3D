@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/04/30 11:30:58 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/05 12:12:51 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "settings.h"
-#include "minimap.h"
 
-void	fill_block(mlx_image_t **img, t_map *map, t_vector pos, int wall)
+
+void	fill_block(mlx_image_t **img, t_map *map, t_point pos, int wall)
 {
 	int	x;
 	int	y;
@@ -43,7 +42,7 @@ void	render_minimap(t_map *map, mlx_image_t **img)
 {
 	int			row;
 	int			col;
-	t_vector	pos;
+	t_point		pos;
 
 	row = 0;
 	while (row < map->height)
