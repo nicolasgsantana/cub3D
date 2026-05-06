@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 14:35:20 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/06 15:04:25 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ int	main(void)
 	game.map = map;
 	game.player = player;
 	//draw
-	render_minimap(&game);
-	render_player(&game);
 	mlx_image_to_window(mlx, img, 0, 0);
-	// mlx_loop_hook(mlx, input_hook, mlx);
-	// mlx_loop_hook(mlx, show_fps, mlx);
+	//hooks
+	mlx_loop_hook(mlx, render_hook, &game);
+	mlx_loop_hook(mlx, input_hook, &game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

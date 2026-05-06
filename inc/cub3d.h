@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 14:35:14 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/06 15:03:26 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	free_split(char **split);
 void	cleant_exit(t_game *game, int exit_code);
 void	error_exit(char *msg, t_game *game);
 
-
-
+/* Rendering */
+void	render_hook(void *param);
 
 
 
