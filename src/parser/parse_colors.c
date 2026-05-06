@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:48:18 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 15:13:21 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/06 09:42:53 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	valid_nbr(char *str)
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (!str[i] || str[i] == '\n')
-		retunr (0);
+		return (0);
 	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 	{
 		if (!ft_isdigit(str[i]))
