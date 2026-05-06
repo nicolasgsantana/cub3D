@@ -16,12 +16,13 @@ LIBS = $(LIBFT) $(MLX42) -ldl -lglfw -lm -pthread
 SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								minimap/render_map.c \
 								input/input_hook.c \
-								parser/parse_colors.c \
-								parser/parse_grid.c \
-								parser/parse_main.c \
-								parser/parse_textures.c \
-								parser/validate_map.c \
 )
+# 								parser/parse_colors.c \
+# 								parser/parse_grid.c \
+# 								parser/parse_main.c \
+# 								parser/parse_textures.c \
+# 								parser/validate_map.c \
+
 HEADER = $(addprefix $(INC_DIR)/,	cub3d.h \
 									settings.h \
 )
