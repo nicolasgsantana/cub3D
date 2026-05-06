@@ -6,37 +6,52 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 19:54:13 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/06 14:35:20 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		render_minimap(t_map *map, mlx_image_t **img);
-void	input_hook(void	*param);
-
 int	main(void)
 {
+	t_game		game;
 	mlx_t		*mlx;
-	mlx_image_t	*map_img;
-	mlx_image_t	*player_img;
-	t_map	map;
+	mlx_image_t	*img;
+	t_map		map;
+	t_player	player;
 
-	map.map_grid = (char *[]){"111111111111", "100000000001", "100001100001", "10000N000001", "100000000001", "111111111111"};
+	// init test map
+	map.map_grid = (char *[]){	"111111111111",
+								"100000000001",
+								"100001100001",
+								"10000N000001",
+								"100000000001",
+								"111111111111"};
 	map.height = 6;
 	map.width = 12;
-	mlx = mlx_init(640, 480, "cub3D", false);
+	// init mlx
+	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
 	if (!mlx)
 		return (EXIT_FAILURE);
-	map_img = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (!map_img)
+	// init scene img
+	img = mlx_new_image(mlx, mlx->width, mlx->height);
+	if (!img)
 		return (EXIT_FAILURE);
-	render_minimap(&map, &map_img);
-	mlx_image_to_window(mlx, map_img, 0, 0);
-	player_img = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (!player_img)
-		return (EXIT_FAILURE);
-	mlx_loop_hook(mlx, input_hook, mlx);
+	// init player
+	player.angle = 0;
+	player.pos.x = 5.5;
+	player.pos.y = 3.5;
+	//init game
+	game.mlx = mlx;
+	game.scene_img = img;
+	game.map = map;
+	game.player = player;
+	//draw
+	render_minimap(&game);
+	render_player(&game);
+	mlx_image_to_window(mlx, img, 0, 0);
+	// mlx_loop_hook(mlx, input_hook, mlx);
+	// mlx_loop_hook(mlx, show_fps, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
