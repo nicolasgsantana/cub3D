@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 09:34:50 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/06 09:41:02 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_game
 void	input_hook(void *param);
 
 /* Minimapa*/
-int		render_minimap(t_map *map, mlx_image_t **img);
+void	render_minimap(t_map *map, mlx_image_t **img);
 void	fill_block(mlx_image_t **img, t_map *map, t_point pos, int wall);
 
 /* Parser */
