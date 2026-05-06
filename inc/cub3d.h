@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 15:39:45 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/06 09:34:50 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ typedef struct s_game
 void	input_hook(void *param);
 
 /* Minimapa*/
-void	render_minimap(t_map *map, mlx_image_t **img);
+int		render_minimap(t_map *map, mlx_image_t **img);
 void	fill_block(mlx_image_t **img, t_map *map, t_point pos, int wall);
 
 /* Parser */
-int		parser_cub(char *file, t_map *map);
+int		parse_cub(char *file, t_game *game);
 int		check_extension(char *filename, char *extension);
 int		parse_textures(char *line, t_game *game);
 int		parse_color(char *line, t_game *game);
