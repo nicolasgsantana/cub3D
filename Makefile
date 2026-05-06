@@ -9,12 +9,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX42 = $(MLX42_DIR)/build/libmlx42.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/inc -I$(MLX42_DIR)/include/MLX42
 LIBS = $(LIBFT) $(MLX42) -ldl -lglfw -lm -pthread
 
 SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								minimap/render_map.c \
+								minimap/render_player.c \
 								input/input_hook.c \
 )
 # 								parser/parse_colors.c \
