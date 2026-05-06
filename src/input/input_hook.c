@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 19:55:00 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/06 15:13:41 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 
 void	input_hook(void	*param)
 {
+	t_game	*game;
 	mlx_t	*mlx;
 
-	mlx = param;
+	game = param;
+	mlx = game->mlx;
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
-		printf("W key pressed delta: %f\n", mlx->delta_time);
+		game->player.pos.y -= MOVE_SPEED * mlx->delta_time;
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
-		printf("A key pressed delta: %f\n", mlx->delta_time);
+		game->player.pos.x -= MOVE_SPEED * mlx->delta_time;
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
-		printf("S key pressed delta: %f\n", mlx->delta_time);
+		game->player.pos.y += MOVE_SPEED * mlx->delta_time;
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
-		printf("D key pressed delta: %f\n", mlx->delta_time);
+		game->player.pos.x += MOVE_SPEED * mlx->delta_time;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+	{
 		printf("LEFT key pressed delta: %f\n", mlx->delta_time);
+	}
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+	{
 		printf("LEFT key pressed delta: %f\n", mlx->delta_time);
+	}
+
 }
