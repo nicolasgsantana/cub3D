@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 15:03:26 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/07 12:01:58 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	error_exit(char *msg, t_game *game);
 
 /* Rendering */
 void	render_hook(void *param);
+void	plot_line(mlx_image_t *img, t_point p0, t_point p1, uint32_t color);
 
 
 

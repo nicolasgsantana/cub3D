@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:12:25 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 11:14:50 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/07 11:58:29 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define MMAP_BG_COLOR	0x000000FF // Preto
 # define MMAP_FG_COLOR	0xFFFFFFFF // Branco
 # define PLAYER_COLOR	0xFF0000FF // vermelho
+# define DIR_COLOR		0xFCBA03FF // Amarelo?
 
 /* calculos matemáticos*/
 # define PI 3.1415926535
