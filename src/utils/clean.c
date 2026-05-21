@@ -6,7 +6,7 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:41:34 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 12:52:31 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 16:09:44 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	cleant_exit(t_game *game, int exit_code)
+void	clean_exit(t_game *game, int exit_code)
 {
 	if (!game)
 		exit(exit_code);

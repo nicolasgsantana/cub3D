@@ -6,7 +6,7 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:08:38 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 14:27:37 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 20:06:06 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*get_texture_path(char *line)
 	i = 0;
 	while (line[i] && line[i] != ' ' && line[i] != '\t')
 		i++;
-	while (line[i] && line[i] == ' ' || line [i] == '\t')
+	while (line[i] && (line[i] == ' ' || line [i] == '\t'))
 		i++;
 	path = ft_strdup(&line[i]);
 	if (!path)
@@ -33,7 +33,7 @@ static char	*get_texture_path(char *line)
 			path[i] = '\0';
 		i++;
 	}
-	retrun (path);
+	return (path);
 }
 /* Carrega PNG e verifica se ja foi carregada */
 static void	load_texture(mlx_texture_t **texture, char *path, t_game *game)

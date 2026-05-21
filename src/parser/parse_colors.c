@@ -6,7 +6,7 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:48:18 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 15:13:21 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 20:03:04 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	valid_nbr(char *str)
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (!str[i] || str[i] == '\n')
-		retunr (0);
+		return (0);
 	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 	{
 		if (!ft_isdigit(str[i]))
@@ -41,7 +41,6 @@ static int	valid_nbr(char *str)
 
 static uint32_t	parse_rgb_array(char **rgb, t_game *game)
 {
-	char	*rgb;
 	int		r;
 	int		g;
 	int		b;
@@ -51,7 +50,7 @@ static uint32_t	parse_rgb_array(char **rgb, t_game *game)
 		free_split(rgb);
 		error_exit("Invalid color format. The correct format is: R,G,B.", game);
 	}
-	if (!valid_nbr(rgb[0]) || !valid_nbr(rgb[1]) || !valid_nbr(rgb[2]));
+	if (!valid_nbr(rgb[0]) || !valid_nbr(rgb[1]) || !valid_nbr(rgb[2]))
 	{
 		free_split(rgb);
 		error_exit("The colors should only contain valid numbers.", game);
@@ -80,7 +79,7 @@ static void	set_color(char *line, uint32_t *color_ptr, t_game *game)
 
 }
 
-int	parse_color(char *line, t_game *game)
+int	parse_colors(char *line, t_game *game)
 {
 	if (ft_strncmp(line, "F ", 2) == 0)
 		set_color(line, &game->map.floor_color, game);
