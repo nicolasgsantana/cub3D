@@ -28,11 +28,6 @@ SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								raycast/raycaster_utils.c \
 								raycast/raycaster.c \
 )
-# 								parser/parse_colors.c \
-# 								parser/parse_grid.c \
-# 								parser/parse_main.c \
-# 								parser/parse_textures.c \
-# 								parser/validate_map.c \
 
 HEADER = $(addprefix $(INC_DIR)/,	cub3d.h \
 									settings.h \

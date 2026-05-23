@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 10:59:57 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:26:53 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,4 @@ void	input_hook(void	*param)
 		game->player.pos.x = new_x;
 	if (!is_wall(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
-	cast_rays(game);
-	render_minimap(&game->map, game->scene_img);
-	render_player_2d(game, game->scene_img);
 }

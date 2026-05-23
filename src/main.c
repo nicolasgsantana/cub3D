@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/21 19:58:15 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/23 15:27:16 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	main(int argc, char **argv)
 	game.scene_img = mlx_new_image(game.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!game.scene_img)
 		error_exit("Failed to create scene image.", &game);
-	render_minimap(&game.map, game.scene_img);
 	mlx_image_to_window(game.mlx, game.scene_img, 0, 0);
 	mlx_loop_hook(game.mlx, input_hook, &game);
+	mlx_loop_hook(game.mlx, render_hook, &game);
 	mlx_loop(game.mlx);
 	clean_exit(&game, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
