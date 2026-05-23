@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 15:13:22 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/23 15:51:28 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ void	render_minimap(t_map *map, mlx_image_t *img)
 	int			size;
 	uint32_t	color;
 
-	if (map->width > map->height)
-		size = img->width / map->width;
-	else
-		size = img->width / map->height;
+	size = (WIN_WIDTH / 3) / fmax(map->width, map->height);
 	row = -1;
 	while(++row < map->height)
 	{
@@ -75,10 +72,7 @@ void	render_player_2d(t_game *game, mlx_image_t *img)
 	int	i;
 	int	j;
 
-	if (game->map.width > game->map.height)
-		size = img->width / game->map.width;
-	else
-		size = img->width / game->map.height;
+	size = (WIN_WIDTH / 3) / fmax(game->map.width, game->map.width);
 	px = game->player.pos.x * size;
 	py = game->player.pos.y * size;
 	i = -3;
