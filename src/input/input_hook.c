@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/21 19:24:07 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/23 10:59:57 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,28 @@ static void	handle_rotation(t_game *game)
 
 static void	handle_movement(t_game *game, double *new_x, double *new_y)
 {
+	double	dt_time;
+
+	dt_time = game->mlx->delta_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
-		*new_x += game->player.dir.x;
-		*new_y += game->player.dir.y;
+		*new_x += game->player.dir.x * MOVE_SPEED * dt_time;
+		*new_y += game->player.dir.y * MOVE_SPEED * dt_time;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
-		*new_x -= game->player.dir.x;
-		*new_y -= game->player.dir.y;
+		*new_x -= game->player.dir.x * MOVE_SPEED * dt_time;
+		*new_y -= game->player.dir.y * MOVE_SPEED * dt_time;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		*new_x += cos(game->player.angle - (PI / 2)) * MOVE_SPEED;
-		*new_y += sin(game->player.angle - (PI / 2)) * MOVE_SPEED;
+		*new_x += cos(game->player.angle - (PI / 2)) * MOVE_SPEED * dt_time;
+		*new_y += sin(game->player.angle - (PI / 2)) * MOVE_SPEED * dt_time;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		*new_x += cos(game->player.angle + (PI / 2)) * MOVE_SPEED;
-		*new_y += sin(game->player.angle + (PI / 2)) * MOVE_SPEED;
+		*new_x += cos(game->player.angle + (PI / 2)) * MOVE_SPEED * dt_time;
+		*new_y += sin(game->player.angle + (PI / 2)) * MOVE_SPEED * dt_time;
 	}
 }
 
@@ -83,7 +86,7 @@ void	input_hook(void	*param)
 		game->player.pos.x = new_x;
 	if (!is_wall(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
+	cast_rays(game);
 	render_minimap(&game->map, game->scene_img);
 	render_player_2d(game, game->scene_img);
-	cast_rays(game);
 }
