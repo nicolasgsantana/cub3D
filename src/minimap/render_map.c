@@ -6,14 +6,14 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 15:51:28 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/23 16:13:49 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color)
+static void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color)
 {
 	int	x;
 	int	y;

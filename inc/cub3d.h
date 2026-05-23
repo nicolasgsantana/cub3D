@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 15:25:36 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/23 16:14:10 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	input_hook(void *param);
 
 /* Minimapa*/
 void	render_minimap(t_map *map, mlx_image_t *img);
-void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color);
 void	render_player_2d(t_game *game, mlx_image_t *img);
 
 /* Parser */
