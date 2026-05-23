@@ -19,6 +19,14 @@ SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								minimap/render_hook.c \
 								minimap/plot_line.c \
 								input/input_hook.c \
+								parser/parse_colors.c \
+								parser/parse_grid.c \
+								parser/parse_main.c \
+								parser/parse_textures.c \
+								parser/validate_map.c \
+								utils/clean.c \
+								raycast/raycaster_utils.c \
+								raycast/raycaster.c \
 )
 # 								parser/parse_colors.c \
 # 								parser/parse_grid.c \

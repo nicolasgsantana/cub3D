@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 14:42:34 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/21 19:59:30 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	fill_block(t_game *game, t_point pos, int size, uint32_t color)
 	y = 1;
 	while (y < size)
 	{
-		x = 1;
-		while (x < size)
+		x = 0;
+		while (x < size - 1)
 		{
 			mlx_put_pixel(img, pos.x + x - 1,
 				pos.y + y - 1, color);
@@ -40,6 +40,8 @@ void	render_minimap(t_game *game)
 	int			col;
 	int			size;
 	t_point		pos;
+	int			size;
+	uint32_t	color;
 
 	size = WIN_WIDTH / fmax(game->map.width, game->map.height);
 	row = 0;
@@ -56,6 +58,6 @@ void	render_minimap(t_game *game)
 				fill_block(game, pos, size, MMAP_BG_COLOR);
 			col++;
 		}
-		row++;
+		i++;
 	}
 }

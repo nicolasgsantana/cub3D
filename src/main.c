@@ -6,52 +6,43 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/06 15:04:25 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/21 19:58:15 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+// ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
+static void	init_game(t_game *game)
 {
-	t_game		game;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	t_map		map;
-	t_player	player;
+	ft_bzero(game, sizeof(t_game));
+	game->player.angle = 0.0;
+	game->player.dir.x = 0.0;
+	game->player.dir.y = 0.0;
+}
 
-	// init test map
-	map.map_grid = (char *[]){	"111111111111",
-								"100000000001",
-								"100001100001",
-								"10000N000001",
-								"100000000001",
-								"111111111111"};
-	map.height = 6;
-	map.width = 12;
-	// init mlx
-	mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
-	if (!mlx)
+
+int	main(int argc, char **argv)
+{
+	t_game	game;
+
+	if (argc != 2)
+	{
+		printf("Error\nUso correto: ./cub3D <caminho_do_mapa.cub>\n");
 		return (EXIT_FAILURE);
-	// init scene img
-	img = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (!img)
-		return (EXIT_FAILURE);
-	// init player
-	player.angle = 0;
-	player.pos.x = 5.5;
-	player.pos.y = 3.5;
-	//init game
-	game.mlx = mlx;
-	game.scene_img = img;
-	game.map = map;
-	game.player = player;
-	//draw
-	mlx_image_to_window(mlx, img, 0, 0);
-	//hooks
-	mlx_loop_hook(mlx, render_hook, &game);
-	mlx_loop_hook(mlx, input_hook, &game);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	}
+	init_game(&game);
+	parse_cub(argv[1], &game);
+	game.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
+	if (!game.mlx)
+		error_exit("Failed to initialize MLX42", &game);
+	game.scene_img = mlx_new_image(game.mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game.scene_img)
+		error_exit("Failed to create scene image.", &game);
+	render_minimap(&game.map, game.scene_img);
+	mlx_image_to_window(game.mlx, game.scene_img, 0, 0);
+	mlx_loop_hook(game.mlx, input_hook, &game);
+	mlx_loop(game.mlx);
+	clean_exit(&game, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

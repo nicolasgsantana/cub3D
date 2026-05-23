@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/07 12:01:58 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/21 20:11:29 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,39 @@ typedef struct s_point
 	int				y;
 }	t_point;
 
-/* Raycasting */
+/* Raycasting  Vetores 2D*/
 typedef struct s_vector
 {
 	double			x;
 	double			y;
 }	t_vector;
+
+/* Raycasting --- Dados de cada Raio disparado pela câmera */
+typedef struct s_ray
+{
+	double			angle;
+	double			distance;
+	double			wall_hit_x;
+	double			wall_hit_y;
+	int				was_hit_vertical;
+}	t_ray;
+
+/* Variáveis de cáculo interno do DDA*/
+typedef struct s_dda
+{
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	int				step_x;
+	int				step_y;
+	int				map_x;
+	int				map_y;
+	int				hit;
+	int				side;
+}	t_dda;
 
 typedef struct s_player
 {
@@ -80,18 +107,28 @@ void	input_hook(void *param);
 /* Minimapa*/
 void	render_minimap(t_game *game);
 void	fill_block(t_game *game, t_point pos, int size, uint32_t color);
-void	render_player(t_game *game);
+void	render_minimap(t_map *map, mlx_image_t *img);
+void	render_player_2d(t_game *game, mlx_image_t *img);
 
 /* Parser */
 int		parse_cub(char *file, t_game *game);
 int		check_extension(char *filename, char *extension);
 int		parse_textures(char *line, t_game *game);
-int		parse_color(char *line, t_game *game);
+int		parse_colors(char *line, t_game *game);
 int		parse_grid(char *line, t_game *game);
+int		validate_map(t_game *game);
+
+/* Raycaster_utils.c */
+double	normalize_angle(double angle);
+void	draw_wall_line(t_game *game, int col, int *draw, uint32_t color);
+
+/* Raycaster.c */
+void	cast_rays(t_game *game);
+
 
 /* utils/clean.c*/
 void	free_split(char **split);
-void	cleant_exit(t_game *game, int exit_code);
+void	clean_exit(t_game *game, int exit_code);
 void	error_exit(char *msg, t_game *game);
 
 /* Rendering */
