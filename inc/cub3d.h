@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
 /*   Updated: 2026/05/21 20:11:29 by alessandro       ###   ########.fr       */
@@ -105,7 +105,8 @@ typedef struct s_game
 void	input_hook(void *param);
 
 /* Minimapa*/
-void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color);
+void	render_minimap(t_game *game);
+void	fill_block(t_game *game, t_point pos, int size, uint32_t color);
 void	render_minimap(t_map *map, mlx_image_t *img);
 void	render_player_2d(t_game *game, mlx_image_t *img);
 
@@ -130,8 +131,9 @@ void	free_split(char **split);
 void	clean_exit(t_game *game, int exit_code);
 void	error_exit(char *msg, t_game *game);
 
-
-
+/* Rendering */
+void	render_hook(void *param);
+void	plot_line(mlx_image_t *img, t_point p0, t_point p1, uint32_t color);
 
 
 
