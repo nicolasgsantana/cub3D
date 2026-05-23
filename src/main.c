@@ -6,13 +6,13 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 14:09:02 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 19:58:15 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
+// ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
 static void	init_game(t_game *game)
 {
 	ft_bzero(game, sizeof(t_game));
@@ -20,31 +20,29 @@ static void	init_game(t_game *game)
 	game->player.dir.x = 0.0;
 	game->player.dir.y = 0.0;
 }
-*/
 
-int	main(void)
+
+int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*map_img;
-	mlx_image_t	*player_img;
-	t_map	map;
+	t_game	game;
 
-	map.map_grid = (char *[]){"111111111111", "100000000001", "100001100001", "10000N000001", "100000000001", "111111111111"};
-	map.height = 6;
-	map.width = 12;
-	mlx = mlx_init(640, 480, "cub3D", false);
-	if (!mlx)
+	if (argc != 2)
+	{
+		printf("Error\nUso correto: ./cub3D <caminho_do_mapa.cub>\n");
 		return (EXIT_FAILURE);
-	map_img = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (!map_img)
-		return (EXIT_FAILURE);
-	render_minimap(&map, &map_img);
-	mlx_image_to_window(mlx, map_img, 0, 0);
-	player_img = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (!player_img)
-		return (EXIT_FAILURE);
-	mlx_loop_hook(mlx, input_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	}
+	init_game(&game);
+	parse_cub(argv[1], &game);
+	game.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "cub3D", false);
+	if (!game.mlx)
+		error_exit("Failed to initialize MLX42", &game);
+	game.scene_img = mlx_new_image(game.mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game.scene_img)
+		error_exit("Failed to create scene image.", &game);
+	render_minimap(&game.map, game.scene_img);
+	mlx_image_to_window(game.mlx, game.scene_img, 0, 0);
+	mlx_loop_hook(game.mlx, input_hook, &game);
+	mlx_loop(game.mlx);
+	clean_exit(&game, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

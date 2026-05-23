@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:12:25 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/05 11:14:50 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/23 10:22:36 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 /* calculos matemáticos*/
 # define PI 3.1415926535
-# define MOVE_SPEED 3.0 // velocidade da caminhada
+# define MOVE_SPEED 1.0 // velocidade da caminhada
 # define ROT_SPEED 0.05 // velocidade de rotação da camera
 # define DR 0.0174533 // Graus para radianos
 # define FOV 60 // Campo de visão

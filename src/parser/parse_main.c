@@ -6,7 +6,7 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 13:30:30 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 17:19:27 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 17:31:04 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,5 @@ int	parse_cub(char *file, t_game *game)
 	validate_map(game);
 	return (1);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:39:57 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 16:34:47 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/21 20:11:44 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	check_map_char(t_game *game, int x, int y, char c)
 
 	g = game->map.map_grid;
 	h = game->map.height;
-	if (c == 'N' || c == 'S' || c == 'E' || c == "N")
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		set_player_start(game, x, y, c);
 	else if (c != '1' && c != '0' && c != ' ')
 		error_exit("Invalid character found in the maze.", game);
@@ -65,7 +65,7 @@ static void	check_map_char(t_game *game, int x, int y, char c)
 	}
 }
 
-int	validade_map(t_game *game)
+int	validate_map(t_game *game)
 {
 	int		x;
 	int		y;
