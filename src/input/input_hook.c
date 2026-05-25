@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 15:26:53 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/05/25 20:46:23 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ static int	is_wall(t_game *game, double x, double y)
 }
 static void	handle_rotation(t_game *game)
 {
+	double	dt_time;
+
+	dt_time = game->mlx->delta_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		game->player.angle -= ROT_SPEED;
+		game->player.angle -= ROT_SPEED * dt_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		game->player.angle +=ROT_SPEED;
+		game->player.angle += ROT_SPEED * dt_time;
 	if (game->player.angle < 0)
 		game->player.angle += 2 * PI;
 	if (game->player.angle > 2 * PI)
