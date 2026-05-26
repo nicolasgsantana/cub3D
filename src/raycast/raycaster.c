@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 18:20:50 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/21 19:52:19 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/05/25 21:15:37 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	perform_dda(t_game *game, t_ray *ray, t_dda *dda)
 			dda->hit = 1;
 	}
 	if (dda->side == 0)
-		ray->distance = (dda->side_dist_x - dda->delta_dist_y);
+		ray->distance = (dda->side_dist_x - dda->delta_dist_x);
 	else
 		ray->distance = (dda->side_dist_y - dda->delta_dist_y);
 	ray->was_hit_vertical = (dda->side == 0);
