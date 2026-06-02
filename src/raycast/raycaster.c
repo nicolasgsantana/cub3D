@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 18:20:50 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/25 21:15:37 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/01 21:40:41 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,29 +76,79 @@ static void	perform_dda(t_game *game, t_ray *ray, t_dda *dda)
 	else
 		ray->distance = (dda->side_dist_y - dda->delta_dist_y);
 	ray->was_hit_vertical = (dda->side == 0);
+	if (dda->side == 0)
+		ray->wall_hit_x = game->player.pos.y + 
+			(dda->side_dist_x - dda->delta_dist_x) * dda->ray_dir_y;
+	else
+		ray->wall_hit_x = game->player.pos.x + 
+			(dda->delta_dist_y - dda->delta_dist_y) * dda->ray_dir_x;
+	ray->wall_hit_x -= floor(ray->wall_hit_x);
 	ray->distance *= cos(normalize_angle(ray->angle - game->player.angle));
 }
 
-static void	render_wall_slice(t_game *game, t_ray *ray, int col)
+static mlx_texture_t	*get_wall_texture(t_game *game, t_dda *dda)
 {
-	int			line_h;
-	int			draw[2];
-	uint32_t	color;
+	if (dda->side == 0)
+	{
+		if (dda->step_x > 0)
+			return (game->map.ea_tex);
+		return (game->map.we_tex);
+	}
+	else
+	{
+		if (dda->step_y > 0)
+			return (game->map.so_tex);
+		return (game->map.no_tex);
+	}
+}
+
+static void render_wall_slice(t_game *game, t_ray *ray, t_dda *dda, int col)
+{
+	mlx_texture_t	*tex;
+	int				line_h;
+	int				draw_start;
+	int				draw_end;
+	int				tex_x;
+	double			step;
+	double			tex_pos;
+	int				tex_y;
+	uint32_t		color;
+	uint8_t			*px;
 
 	if (ray->distance <= 0.0001)
 		ray->distance = 0.0001;
 	line_h = (int)(WIN_HEIGHT / ray->distance);
-	draw[0] = (-line_h / 2) + (WIN_HEIGHT / 2);
-	if (draw[0] <0)
-		draw[0] = 0;
-	draw[1] = (line_h / 2) + (WIN_HEIGHT / 2);
-	if (draw[1] >= WIN_HEIGHT)
-		draw[1] = WIN_HEIGHT - 1;
-	if (ray->was_hit_vertical)
-		color = 0x3498DBFF;
-	else
-		color = 0x2980B9FF;
-	draw_wall_line(game, col, draw, color);
+	draw_start = (-line_h / 2) + (WIN_HEIGHT / 2);
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = (line_h / 2) + (WIN_HEIGHT / 2);
+	if (draw_end >= WIN_HEIGHT)
+		draw_end = WIN_HEIGHT - 1;
+
+	tex = get_wall_texture(game, dda);
+
+	// Which column of the texture
+	tex_x = (int)(ray->wall_hit_x * tex->width);
+
+	// Flip to avoid mirroring on certain faces
+	if (dda->side == 0 && dda->ray_dir_x > 0)
+		tex_x = tex->width - tex_x - 1;
+	if (dda->side == 1 && dda->ray_dir_y < 0)
+		tex_x = tex->width - tex_x - 1;
+
+	// Vertical step through texture per screen pixel
+	step = (double)tex->height / line_h;
+	tex_pos = (draw_start - WIN_HEIGHT / 2 + line_h / 2) * step;
+
+	while (draw_start <= draw_end)
+	{
+		tex_y = (int)tex_pos % tex->height;
+		tex_pos += step;
+		px = tex->pixels + (tex_y * tex->width + tex_x) * tex->bytes_per_pixel;
+		color = (px[0] << 24) | (px[1] << 16) | (px[2] << 8) | px[3];
+		mlx_put_pixel(game->scene_img, col, draw_start, color);
+		draw_start++;
+	}
 }
 
 void	cast_rays(t_game *game)
@@ -115,7 +165,7 @@ void	cast_rays(t_game *game)
 	{
 		init_dda(game, &ray, &dda);
 		perform_dda(game, &ray, &dda);
-		render_wall_slice(game, &ray, col);
+		render_wall_slice(game, &ray, &dda, col);
 		ray.angle = normalize_angle(ray.angle + angle_step);
 		col++;
 	}
