@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 18:20:50 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/01 21:40:41 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/01 21:53:55 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	perform_dda(t_game *game, t_ray *ray, t_dda *dda)
 			(dda->side_dist_x - dda->delta_dist_x) * dda->ray_dir_y;
 	else
 		ray->wall_hit_x = game->player.pos.x + 
-			(dda->delta_dist_y - dda->delta_dist_y) * dda->ray_dir_x;
+			(dda->side_dist_y - dda->delta_dist_y) * dda->ray_dir_x;
 	ray->wall_hit_x -= floor(ray->wall_hit_x);
 	ray->distance *= cos(normalize_angle(ray->angle - game->player.angle));
 }
