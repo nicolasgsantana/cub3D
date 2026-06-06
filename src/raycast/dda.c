@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 15:14:22 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/06 16:43:22 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/06 16:54:43 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ static void	init_step_dist(t_game *game, t_dda *dda)
 	}
 }
 
+static void	set_ray(t_game *game, t_ray *ray, t_dda *dda)
+{
+	if (dda->side == 0)
+		ray->distance = (dda->side_dist_x - dda->delta_dist_x);
+	else
+		ray->distance = (dda->side_dist_y - dda->delta_dist_y);
+	ray->was_hit_vertical = (dda->side == 0);
+	if (dda->side == 0)
+		ray->wall_hit_x = game->player.pos.y
+			+ (dda->side_dist_x - dda->delta_dist_x) * dda->ray_dir_y;
+	else
+		ray->wall_hit_x = game->player.pos.x
+			+ (dda->side_dist_y - dda->delta_dist_y) * dda->ray_dir_x;
+	ray->wall_hit_x -= floor(ray->wall_hit_x);
+	ray->distance *= cos(normalize_angle(ray->angle - game->player.angle));
+}
+
 void	init_dda(t_game *game, t_ray *ray, t_dda *dda)
 {
 	dda->map_x = (int)game->player.pos.x;
@@ -71,17 +88,5 @@ void	perform_dda(t_game *game, t_ray *ray, t_dda *dda)
 		if (game->map.map_grid[dda->map_y][dda->map_x] == '1')
 			dda->hit = 1;
 	}
-	if (dda->side == 0)
-		ray->distance = (dda->side_dist_x - dda->delta_dist_x);
-	else
-		ray->distance = (dda->side_dist_y - dda->delta_dist_y);
-	ray->was_hit_vertical = (dda->side == 0);
-	if (dda->side == 0)
-		ray->wall_hit_x = game->player.pos.y
-			+ (dda->side_dist_x - dda->delta_dist_x) * dda->ray_dir_y;
-	else
-		ray->wall_hit_x = game->player.pos.x
-			+ (dda->side_dist_y - dda->delta_dist_y) * dda->ray_dir_x;
-	ray->wall_hit_x -= floor(ray->wall_hit_x);
-	ray->distance *= cos(normalize_angle(ray->angle - game->player.angle));
+	set_ray(game, ray, dda);
 }
