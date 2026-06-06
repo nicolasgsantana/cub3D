@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 17:06:38 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/06 17:06:58 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/06 17:10:44 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_background(t_game *game)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < WIN_HEIGHT / 2)
