@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_hook.c                                      :+:      :+:    :+:   */
+/*   draw_bg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/06 15:01:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/06 17:09:20 by nde-sant         ###   ########.fr       */
+/*   Created: 2026/06/06 17:06:38 by nde-sant          #+#    #+#             */
+/*   Updated: 2026/06/06 17:10:44 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	clean_img(mlx_image_t *img)
+void	draw_background(t_game *game)
 {
-	ft_memset(img->pixels, 0, img->width * img->height * sizeof(int32_t));
-}
+	int	y;
+	int	x;
 
-void	render_hook(void *param)
-{
-	t_game	*game;
-
-	game = param;
-	clean_img(game->scene_img);
-	draw_background(game);
-	cast_rays(game);
-	render_minimap(&game->map, game->scene_img);
-	render_player_2d(game, game->scene_img);
+	y = 0;
+	while (y < WIN_HEIGHT / 2)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+			mlx_put_pixel(game->scene_img, x++, y, game->map.ceiling_color);
+		y++;
+	}
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+			mlx_put_pixel(game->scene_img, x++, y, game->map.floor_color);
+		y++;
+	}
 }
