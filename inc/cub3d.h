@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 16:14:10 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/06 16:40:43 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,15 @@ typedef struct s_dda
 	int				side;
 }	t_dda;
 
+typedef struct s_tex_slice
+{
+	mlx_texture_t	*tex;
+	int				tex_x;
+	int				tex_y;
+	double			tex_pos;
+	double			step;
+}	t_tex_slice;
+
 typedef struct s_player
 {
 	t_vector		pos; // Posição
@@ -118,11 +127,17 @@ int		validate_map(t_game *game);
 
 /* Raycaster_utils.c */
 double	normalize_angle(double angle);
-void	draw_wall_line(t_game *game, int col, int *draw, uint32_t color);
+void	init_tex_slice(t_tex_slice *slice, t_game *game, t_ray *ray,
+							t_dda *dda);
+int	get_draw_start(t_ray *ray);
+int	get_draw_end(t_ray *ray);
 
 /* Raycaster.c */
 void	cast_rays(t_game *game);
 
+/* dda.c */
+void	init_dda(t_game *game, t_ray *ray, t_dda *dda);
+void	perform_dda(t_game *game, t_ray *ray, t_dda *dda);
 
 /* utils/clean.c*/
 void	free_split(char **split);
