@@ -27,6 +27,7 @@ SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								raycast/raycaster_utils.c \
 								raycast/raycaster.c \
 								raycast/dda.c \
+								raycast/draw_bg.c \
 )
 
 HEADER = $(addprefix $(INC_DIR)/,	cub3d.h \
