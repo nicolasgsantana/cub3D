@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgsantana <nicolasgsantana@studen    +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:41:34 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 22:42:06 by nicolasgsan      ###   ########.fr       */
+/*   Updated: 2026/06/11 22:49:23 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
