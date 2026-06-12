@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nicolasgsantana <nicolasgsantana@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:41:34 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/21 16:09:44 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/11 22:42:06 by nicolasgsan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	clean_exit(t_game *game, int exit_code)
 
 void	error_exit(char *msg, t_game *game)
 {
-	printf("Error\n%s\n", msg);
+	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putendl_fd(msg, STDERR_FILENO);
 	clean_exit(game, EXIT_FAILURE);
 }
