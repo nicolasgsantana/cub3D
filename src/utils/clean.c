@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:41:34 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 22:49:23 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/11 22:57:29 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	clean_exit(t_game *game, int exit_code)
 
 void	error_exit(char *msg, t_game *game)
 {
-	ft_putendl_fd("Error", STDERR_FILENO);
+	if (ft_strlen(msg) > 0)
+		ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	clean_exit(game, EXIT_FAILURE);
 }

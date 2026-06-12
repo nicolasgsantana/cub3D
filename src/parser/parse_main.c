@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 13:30:30 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/21 17:31:04 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/11 23:16:36 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static int	dispatch_line(char *line, t_game *game)
 	if (game->map.map_grid != NULL)
 	{
 		if(*ptr != '1' && *ptr != '0')
-			error_exit("The map should be the last element!", game);
-		return (parse_grid(line, game));
+			return (ft_putendl_fd(MAP_ORDER_ERR, STDERR_FILENO), 1);
+		return (parse_grid(line, game), 0);
 	}
 	if (ft_strncmp(ptr, "NO ", 3) == 0 || ft_strncmp(ptr, "SO ", 3) == 0
 		|| ft_strncmp(ptr, "WE ", 3) == 0 || ft_strncmp(ptr, "EA ", 3) == 0)
@@ -52,10 +52,8 @@ static int	dispatch_line(char *line, t_game *game)
 	else if (ft_strncmp(ptr, "F ", 2) == 0 || ft_strncmp(ptr, "C ", 2) == 0)
 		return (parse_colors(ptr, game));
 	else if (*ptr == '1' || *ptr == '0')
-		return (parse_grid(line, game));
-	else
-		error_exit("Invalid character found in configuration file.", game);
-	return (0);
+		return (parse_grid(line, game), 0);
+	return (ft_putendl_fd(INVALID_CHAR_ERR, STDERR_FILENO), 1);
 }
 /* Faz abertura do arquivo e faz chama a dispatch para tratar
 	o caracter que recebe*/
@@ -63,20 +61,24 @@ int	parse_cub(char *file, t_game *game)
 {
 	int		fd;
 	char	*line;
+	int		errors;
 
 	if (!check_extension(file, ".cub"))
 		error_exit("Invalid extension. The map must be a .cub file.", game);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_exit("The map file could not be opened.", game);
+	errors = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		dispatch_line(line, game);
+		errors += dispatch_line(line, game);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (errors > 0)
+		error_exit("", game);
 	validate_map(game);
 	return (1);
 }

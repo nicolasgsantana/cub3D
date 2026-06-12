@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:08:38 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/21 20:06:06 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/11 23:40:23 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,21 @@ static char	*get_texture_path(char *line)
 	return (path);
 }
 /* Carrega PNG e verifica se ja foi carregada */
-static void	load_texture(mlx_texture_t **texture, char *path, t_game *game)
+static int	load_texture(mlx_texture_t **texture, char *path)
 {
 	if (*texture != NULL)
 	{
 		free(path);
-		error_exit("Duplicate texture in the configuration file.", game);
+		return (ft_putendl_fd(DUPLICATE_TEXTURE_ERR, STDERR_FILENO), 1);
 	}
 	*texture = mlx_load_png(path);
 	if (!*texture)
 	{
 		free(path);
-		error_exit("Failed to load texture. Check the PNG path.", game);
+		return (ft_putendl_fd(FAILED_TEXTURE_LOAD_ERR, STDERR_FILENO), 1);
 	}
 	free(path);
+	return (0);
 }
 
 /* Função chama pelo dispatch_line */
@@ -62,15 +63,15 @@ int	parse_textures(char *line, t_game *game)
 	{
 		if (path)
 			free(path);
-		error_exit ("Missing or invalid texture path.", game);
+		return (ft_putendl_fd(TEXTURE_PATH_ERR, STDERR_FILENO), 1);
 	}
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		load_texture(&game->map.no_tex, path, game);
+		return (load_texture(&game->map.no_tex, path));
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		load_texture(&game->map.so_tex, path, game);
+		return (load_texture(&game->map.so_tex, path));
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		load_texture(&game->map.we_tex, path, game);
+		return (load_texture(&game->map.we_tex, path));
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		load_texture(&game->map.ea_tex, path, game);
-	return (1);
+		return (load_texture(&game->map.ea_tex, path));
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/06 17:07:06 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/11 23:39:51 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "MLX42.h"
 
 # include "settings.h"
+# include "err_msg.h"
 
 /* Dados mapa*/
 typedef struct s_map
@@ -122,7 +123,7 @@ int		parse_cub(char *file, t_game *game);
 int		check_extension(char *filename, char *extension);
 int		parse_textures(char *line, t_game *game);
 int		parse_colors(char *line, t_game *game);
-int		parse_grid(char *line, t_game *game);
+void	parse_grid(char *line, t_game *game);
 int		validate_map(t_game *game);
 
 /* Raycaster_utils.c */

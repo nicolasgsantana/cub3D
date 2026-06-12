@@ -32,6 +32,7 @@ SRC = $(addprefix $(SRC_DIR)/,	main.c \
 
 HEADER = $(addprefix $(INC_DIR)/,	cub3d.h \
 									settings.h \
+									err_msg.h \
 )
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
