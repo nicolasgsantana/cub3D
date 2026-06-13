@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/25 20:46:23 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/13 14:52:18 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,22 @@ static int	is_wall(t_game *game, double x, double y)
 static void	handle_rotation(t_game *game)
 {
 	double	dt_time;
+	int32_t	mouse_x;
+	int32_t	mouse_y;
+	int		delta_x;
 
 	dt_time = game->mlx->delta_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		game->player.angle -= ROT_SPEED * dt_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->player.angle += ROT_SPEED * dt_time;
+	mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
+	delta_x = mouse_x - (WIN_WIDTH / 2);
+	if(delta_x != 0)
+	{
+		game->player.angle += delta_x * MOUSE_SENSITIVITY * dt_time;
+		mlx_set_mouse_pos(game->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	if (game->player.angle < 0)
 		game->player.angle += 2 * PI;
 	if (game->player.angle > 2 * PI)
