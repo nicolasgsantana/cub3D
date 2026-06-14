@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/23 16:13:49 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 13:13:51 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	render_player_2d(t_game *game, mlx_image_t *img)
 	int	i;
 	int	j;
 
-	size = (WIN_WIDTH / 3) / fmax(game->map.width, game->map.width);
+	size = (WIN_WIDTH / 3) / fmax(game->map.height, game->map.width);
 	px = game->player.pos.x * size;
 	py = game->player.pos.y * size;
 	i = -3;
