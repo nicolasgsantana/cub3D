@@ -16,7 +16,6 @@ LIBS = $(LIBFT) $(MLX42) -ldl -lglfw -lm -pthread
 SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								minimap/render_map.c \
 								minimap/render_hook.c \
-								minimap/plot_line.c \
 								input/input_hook.c \
 								parser/parse_colors.c \
 								parser/parse_grid.c \

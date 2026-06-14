@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:23:28 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 23:39:35 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 18:05:13 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static char	**append_to_grid(char **old, char *line, int rows, t_game *game)
 		i++;
 	}
 	new_grid[i] = ft_strdup(line);
+	if (!new_grid[i])
+		error_exit("Memory allocation error in the map array.", game);
 	new_grid[i + 1] = NULL;
 	if (old)
 		free(old);

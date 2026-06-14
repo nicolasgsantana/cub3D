@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:08:38 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 23:40:23 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 18:04:01 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int	parse_textures(char *line, t_game *game)
 		return (load_texture(&game->map.we_tex, path));
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		return (load_texture(&game->map.ea_tex, path));
-	return (0);
+	return (free(path), 0);
 }

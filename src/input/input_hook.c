@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:20:38 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 17:51:30 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static int	is_wall(t_game *game, double x, double y)
 
 	grid_x = (int)x;
 	grid_y = (int)y;
-	if (grid_x < 0 || grid_x >= game->map.width)
-		return (1);
 	if (grid_y < 0 || grid_y >= game->map.height)
+		return (1);
+		if (grid_x < 0 ||
+			grid_x >= (int)ft_strlen(game->map.map_grid[grid_y]))
 		return (1);
 	if (game->map.map_grid[grid_y][grid_x] == '1'
 			|| game->map.map_grid[grid_y][grid_x] == ' ')
