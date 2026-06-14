@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/11 23:39:51 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 13:09:58 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ typedef struct s_ray
 	double			angle;
 	double			distance;
 	double			wall_hit_x;
-	double			wall_hit_y;
-	int				was_hit_vertical;
 }	t_ray;
 
 /* Variáveis de cáculo interno do DDA*/
@@ -147,7 +145,6 @@ void	error_exit(char *msg, t_game *game);
 
 /* Rendering */
 void	render_hook(void *param);
-void	plot_line(mlx_image_t *img, t_point p0, t_point p1, uint32_t color);
 void	draw_background(t_game *game);
 
 
