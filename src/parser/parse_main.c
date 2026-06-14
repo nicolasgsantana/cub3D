@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 13:30:30 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 23:16:36 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 12:27:15 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	dispatch_line(char *line, t_game *game)
 	while (*ptr == ' ' || *ptr == '\t')
 		ptr++;
 	if (*ptr == '\n' || *ptr == '\0')
-		return (1);
+		return (0);
 	if (game->map.map_grid != NULL)
 	{
 		if(*ptr != '1' && *ptr != '0')
