@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 15:14:22 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/06 16:54:43 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/14 13:21:39 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	set_ray(t_game *game, t_ray *ray, t_dda *dda)
 		ray->distance = (dda->side_dist_x - dda->delta_dist_x);
 	else
 		ray->distance = (dda->side_dist_y - dda->delta_dist_y);
-	ray->was_hit_vertical = (dda->side == 0);
 	if (dda->side == 0)
 		ray->wall_hit_x = game->player.pos.y
 			+ (dda->side_dist_x - dda->delta_dist_x) * dda->ray_dir_y;
