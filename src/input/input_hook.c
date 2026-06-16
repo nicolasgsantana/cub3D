@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/05/25 20:46:23 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/15 21:05:56 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static int	is_wall(t_game *game, double x, double y)
 
 	grid_x = (int)x;
 	grid_y = (int)y;
-	if (grid_x < 0 || grid_x >= game->map.width)
-		return (1);
 	if (grid_y < 0 || grid_y >= game->map.height)
+		return (1);
+	if (grid_x < 0 ||
+		grid_x >= (int)ft_strlen(game->map.map_grid[grid_y]))
 		return (1);
 	if (game->map.map_grid[grid_y][grid_x] == '1'
 			|| game->map.map_grid[grid_y][grid_x] == ' ')
@@ -45,30 +46,46 @@ static void	handle_rotation(t_game *game)
 	game->player.dir.y = sin(game->player.angle) * MOVE_SPEED;
 }
 
-static void	handle_movement(t_game *game, double *new_x, double *new_y)
+static void	handle_movement_keys(t_game *game, double *dx, double *dy)
 {
-	double	dt_time;
-
-	dt_time = game->mlx->delta_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
-		*new_x += game->player.dir.x * MOVE_SPEED * dt_time;
-		*new_y += game->player.dir.y * MOVE_SPEED * dt_time;
+		*dx += cos(game->player.angle);
+		*dy += sin(game->player.angle);
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
-		*new_x -= game->player.dir.x * MOVE_SPEED * dt_time;
-		*new_y -= game->player.dir.y * MOVE_SPEED * dt_time;
+		*dx -= cos(game->player.angle);
+		*dy -= sin(game->player.angle);
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		*new_x += cos(game->player.angle - (PI / 2)) * MOVE_SPEED * dt_time;
-		*new_y += sin(game->player.angle - (PI / 2)) * MOVE_SPEED * dt_time;
+		*dx += cos(game->player.angle - (PI / 2));
+		*dy += sin(game->player.angle - (PI / 2));
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		*new_x += cos(game->player.angle + (PI / 2)) * MOVE_SPEED * dt_time;
-		*new_y += sin(game->player.angle + (PI / 2)) * MOVE_SPEED * dt_time;
+		*dx += cos(game->player.angle + (PI / 2));
+		*dy += sin(game->player.angle + (PI / 2));
+	}
+}
+
+static void	handle_movement(t_game *game, double *new_x, double *new_y)
+{
+	double	dt_time;
+	double	dx;
+	double	dy;
+	double	len;
+
+	dt_time = game->mlx->delta_time;
+	dx = 0;
+	dy = 0;
+	handle_movement_keys(game, &dx, &dy);
+	len = sqrt(dx * dx + dy * dy);
+	if (len > 0)
+	{
+		*new_x += (dx / len) * MOVE_SPEED * dt_time;
+		*new_y += (dy / len) * MOVE_SPEED * dt_time;
 	}
 }
 
@@ -85,8 +102,10 @@ void	input_hook(void	*param)
 	new_y = game->player.pos.y;
 	handle_rotation(game);
 	handle_movement(game, &new_x, &new_y);
-	if (!is_wall(game, new_x, game->player.pos.y))
+	if (!is_wall(game, new_x + WALL_MARGIN, game->player.pos.y)
+		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y))
 		game->player.pos.x = new_x;
-	if (!is_wall(game, game->player.pos.x, new_y))
+	if (!is_wall(game, game->player.pos.x, new_y + WALL_MARGIN)
+		&& !is_wall(game, game->player.pos.x, new_y - WALL_MARGIN))
 		game->player.pos.y = new_y;
 }
