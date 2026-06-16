@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	if (!game.scene_img)
 		error_exit("Failed to create scene image.", &game);
 	mlx_image_to_window(game.mlx, game.scene_img, 0, 0);
+	mlx_set_cursor_mode(game.mlx, MLX_MOUSE_DISABLED);
+	mlx_set_mouse_pos(game.mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_loop_hook(game.mlx, input_hook, &game);
 	mlx_loop_hook(game.mlx, render_hook, &game);
 	mlx_loop(game.mlx);

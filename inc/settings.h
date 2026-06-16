@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:12:25 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:39:30 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/13 14:58:37 by alessandro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@
 /* configurações tela*/
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 769
+
+# define MOUSE_SENSITIVITY 0.05
 
 #endif
