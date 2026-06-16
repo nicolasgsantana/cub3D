@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:39:57 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/21 20:11:44 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/14 18:13:20 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ static void	check_map_char(t_game *game, int x, int y, char c)
 	g = game->map.map_grid;
 	h = game->map.height;
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
 		set_player_start(game, x, y, c);
+		c = '0';
+	}
 	else if (c != '1' && c != '0' && c != ' ')
 		error_exit("Invalid character found in the maze.", game);
 	if (c == '0')
@@ -83,5 +86,10 @@ int	validate_map(t_game *game)
 	}
 	if (game->player.pos.x == 0.0)
 		error_exit("No player (N, S, E, W) was found.", game);
+	if (!game->map.no_tex || !game->map.so_tex
+		|| !game->map.ea_tex || !game->map.we_tex)
+		error_exit("Missing texture(s) in the config file.", game);
+	if (!game->map.floor_color || !game->map.ceiling_color)
+		error_exit("Missing floor/ceiling color in configuration file.", game);
 	return (1);
 }

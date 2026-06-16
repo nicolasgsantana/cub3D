@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/13 14:58:00 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/14 13:10:53 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 static void	init_game(t_game *game)
 {
 	ft_bzero(game, sizeof(t_game));
-	game->player.angle = 0.0;
-	game->player.dir.x = 0.0;
-	game->player.dir.y = 0.0;
 }
 
 

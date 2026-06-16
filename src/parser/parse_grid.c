@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:23:28 by alessandro        #+#    #+#             */
-/*   Updated: 2026/05/05 15:37:40 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/14 18:05:13 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ static char	**append_to_grid(char **old, char *line, int rows, t_game *game)
 		i++;
 	}
 	new_grid[i] = ft_strdup(line);
+	if (!new_grid[i])
+		error_exit("Memory allocation error in the map array.", game);
 	new_grid[i + 1] = NULL;
 	if (old)
 		free(old);
 	return (new_grid);
 }
 
-int	parse_grid(char *line, t_game *game)
+void	parse_grid(char *line, t_game *game)
 {
 	int	rows;
 
@@ -61,5 +63,4 @@ int	parse_grid(char *line, t_game *game)
 	game->map.height = rows + 1;
 	if ((int)ft_strlen(line) > game->map.width)
 		game->map.width = ft_strlen(line);
-	return (1);
 }
