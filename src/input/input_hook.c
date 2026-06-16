@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/15 21:05:56 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/15 21:28:48 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,14 @@ void	input_hook(void	*param)
 	new_y = game->player.pos.y;
 	handle_rotation(game);
 	handle_movement(game, &new_x, &new_y);
-	if (!is_wall(game, new_x + WALL_MARGIN, game->player.pos.y)
-		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y))
-		game->player.pos.x = new_x;
-	if (!is_wall(game, game->player.pos.x, new_y + WALL_MARGIN)
-		&& !is_wall(game, game->player.pos.x, new_y - WALL_MARGIN))
-		game->player.pos.y = new_y;
+	if (!is_wall(game, new_x + WALL_MARGIN, game->player.pos.y + WALL_MARGIN)
+		&& !is_wall(game, new_x + WALL_MARGIN, game->player.pos.y - WALL_MARGIN)
+		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y + WALL_MARGIN)
+		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y - WALL_MARGIN))
+			game->player.pos.x = new_x;
+	if (!is_wall(game, game->player.pos.x + WALL_MARGIN, new_y + WALL_MARGIN)
+		&& !is_wall(game, game->player.pos.x + WALL_MARGIN, new_y - WALL_MARGIN)
+		&& !is_wall(game, game->player.pos.x - WALL_MARGIN, new_y + WALL_MARGIN)
+		&& !is_wall(game, game->player.pos.x - WALL_MARGIN, new_y - WALL_MARGIN))
+			game->player.pos.y = new_y;
 }
