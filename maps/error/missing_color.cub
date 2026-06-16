@@ -1,0 +1,11 @@
+NO ./textures/north.png
+SO ./textures/south.png
+WE ./textures/west.png
+EA ./textures/east.png
+
+F 34,139,34
+
+111111
+10N001
+100001
+111111
