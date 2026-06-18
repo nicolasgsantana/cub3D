@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 14:08:38 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/14 18:04:01 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:00:15 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static char	*get_texture_path(char *line)
 	}
 	return (path);
 }
+
 /* Carrega PNG e verifica se ja foi carregada */
 static int	load_texture(mlx_texture_t **texture, char *path)
 {

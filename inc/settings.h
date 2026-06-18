@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alessandro <alessandro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:12:25 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/13 14:58:37 by alessandro       ###   ########.fr       */
+/*   Updated: 2026/06/18 17:39:16 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define ROT_SPEED 1.0 // velocidade de rotação da camera
 # define DR 0.0174533 // Graus para radianos
 # define FOV 60 // Campo de visão
-# define WALL_MARGIN 0.1
+# define W_MARGIN 0.1
 
 /* configurações tela*/
 # define WIN_WIDTH 1024

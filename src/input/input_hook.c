@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/15 21:28:48 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:42:02 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ static int	is_wall(t_game *game, double x, double y)
 	grid_y = (int)y;
 	if (grid_y < 0 || grid_y >= game->map.height)
 		return (1);
-	if (grid_x < 0 ||
-		grid_x >= (int)ft_strlen(game->map.map_grid[grid_y]))
+	if (grid_x < 0
+		|| grid_x >= (int)ft_strlen(game->map.map_grid[grid_y]))
 		return (1);
 	if (game->map.map_grid[grid_y][grid_x] == '1'
 			|| game->map.map_grid[grid_y][grid_x] == ' ')
 		return (1);
 	return (0);
 }
+
 static void	handle_rotation(t_game *game)
 {
 	double	dt_time;
@@ -43,7 +44,7 @@ static void	handle_rotation(t_game *game)
 		game->player.angle += ROT_SPEED * dt_time;
 	mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
 	delta_x = mouse_x - (WIN_WIDTH / 2);
-	if(delta_x != 0)
+	if (delta_x != 0)
 	{
 		game->player.angle += delta_x * MOUSE_SENSITIVITY * dt_time;
 		mlx_set_mouse_pos(game->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
@@ -106,20 +107,20 @@ void	input_hook(void	*param)
 	double	new_y;
 
 	game = (t_game *)param;
-	if (mlx_is_key_down(game->mlx,MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		clean_exit(game, EXIT_SUCCESS);
 	new_x = game->player.pos.x;
 	new_y = game->player.pos.y;
 	handle_rotation(game);
 	handle_movement(game, &new_x, &new_y);
-	if (!is_wall(game, new_x + WALL_MARGIN, game->player.pos.y + WALL_MARGIN)
-		&& !is_wall(game, new_x + WALL_MARGIN, game->player.pos.y - WALL_MARGIN)
-		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y + WALL_MARGIN)
-		&& !is_wall(game, new_x - WALL_MARGIN, game->player.pos.y - WALL_MARGIN))
-			game->player.pos.x = new_x;
-	if (!is_wall(game, game->player.pos.x + WALL_MARGIN, new_y + WALL_MARGIN)
-		&& !is_wall(game, game->player.pos.x + WALL_MARGIN, new_y - WALL_MARGIN)
-		&& !is_wall(game, game->player.pos.x - WALL_MARGIN, new_y + WALL_MARGIN)
-		&& !is_wall(game, game->player.pos.x - WALL_MARGIN, new_y - WALL_MARGIN))
-			game->player.pos.y = new_y;
+	if (!is_wall(game, new_x + W_MARGIN, game->player.pos.y + W_MARGIN)
+		&& !is_wall(game, new_x + W_MARGIN, game->player.pos.y - W_MARGIN)
+		&& !is_wall(game, new_x - W_MARGIN, game->player.pos.y + W_MARGIN)
+		&& !is_wall(game, new_x - W_MARGIN, game->player.pos.y - W_MARGIN))
+		game->player.pos.x = new_x;
+	if (!is_wall(game, game->player.pos.x + W_MARGIN, new_y + W_MARGIN)
+		&& !is_wall(game, game->player.pos.x + W_MARGIN, new_y - W_MARGIN)
+		&& !is_wall(game, game->player.pos.x - W_MARGIN, new_y + W_MARGIN)
+		&& !is_wall(game, game->player.pos.x - W_MARGIN, new_y - W_MARGIN))
+		game->player.pos.y = new_y;
 }

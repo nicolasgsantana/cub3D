@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:09:58 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:56:18 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_map
 	mlx_texture_t	*so_tex; //textura sul
 	mlx_texture_t	*ea_tex; // textura leste
 	mlx_texture_t	*we_tex; // textura oeste
-
 }				t_map;
 
 /* Geometria e matriz*/
@@ -96,9 +95,9 @@ typedef struct s_tex_slice
 
 typedef struct s_player
 {
-	t_vector		pos; // Posição
-	t_vector		dir; // Direção (delta)
-	double			angle; // Angulo atual
+	t_vector		pos;
+	t_vector		dir;
+	double			angle;
 }	t_player;
 
 typedef struct s_game
@@ -127,9 +126,9 @@ int		validate_map(t_game *game);
 /* Raycaster_utils.c */
 double	normalize_angle(double angle);
 void	init_tex_slice(t_tex_slice *slice, t_game *game, t_ray *ray,
-							t_dda *dda);
-int	get_draw_start(t_ray *ray);
-int	get_draw_end(t_ray *ray);
+			t_dda *dda);
+int		get_draw_start(t_ray *ray);
+int		get_draw_end(t_ray *ray);
 
 /* Raycaster.c */
 void	cast_rays(t_game *game);
@@ -146,10 +145,5 @@ void	error_exit(char *msg, t_game *game);
 /* Rendering */
 void	render_hook(void *param);
 void	draw_background(t_game *game);
-
-
-
-
-
 
 #endif
