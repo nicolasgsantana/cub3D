@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-/* retorna o caractere emuma posição (x,y)*/
 static char	get_char(char **grid, int x, int y, int max_y)
 {
 	if (y < 0 || y >= max_y)
@@ -22,7 +21,6 @@ static char	get_char(char **grid, int x, int y, int max_y)
 	return (grid[y][x]);
 }
 
-/* Extrai as coordenadas iniciais e define para onde a câmera está olhando*/
 static void	set_player_start(t_game *game, int x, int y, char dir)
 {
 	if (game->player.pos.x != 0.0)
@@ -40,11 +38,6 @@ static void	set_player_start(t_game *game, int x, int y, char dir)
 	game->map.map_grid[y][x] = '0';
 }
 
-/*
-	Analisa as regras de um caractere específico.
-	Checa caracteres inválidos, define o jogador e
-	verifica furos no chão.
-*/
 static void	check_map_char(t_game *game, int x, int y, char c)
 {
 	char	**g;

@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-/* extrai o caminho do path */
 static char	*get_texture_path(char *line)
 {
 	char	*path;
@@ -36,7 +35,6 @@ static char	*get_texture_path(char *line)
 	return (path);
 }
 
-/* Carrega PNG e verifica se ja foi carregada */
 static int	load_texture(mlx_texture_t **texture, char *path)
 {
 	if (*texture != NULL)
@@ -54,7 +52,6 @@ static int	load_texture(mlx_texture_t **texture, char *path)
 	return (0);
 }
 
-/* Função chama pelo dispatch_line */
 int	parse_textures(char *line, t_game *game)
 {
 	char	*path;

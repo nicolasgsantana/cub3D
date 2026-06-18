@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/* liberar mtz. bi (map_grid ft_split)*/
+
 void	free_split(char **split)
 {
 	int	i;

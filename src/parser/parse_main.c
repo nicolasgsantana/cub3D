@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-/* Verifica extensão do arquivo = .cub*/
 int	check_extension(char *filename, char *extension)
 {
 	int	len_f;
@@ -29,8 +28,6 @@ int	check_extension(char *filename, char *extension)
 	return (0);
 }
 
-/* Encaminha a linha lida para f. analisadora com base
- nos caracteres iniciais*/
 static int	dispatch_line(char *line, t_game *game)
 {
 	char	*ptr;
@@ -56,8 +53,6 @@ static int	dispatch_line(char *line, t_game *game)
 	return (ft_putendl_fd(INVALID_CHAR_ERR, STDERR_FILENO), 1);
 }
 
-/* Faz abertura do arquivo e faz chama a dispatch para tratar
-	o caracter que recebe*/
 int	parse_cub(char *file, t_game *game)
 {
 	int		fd;

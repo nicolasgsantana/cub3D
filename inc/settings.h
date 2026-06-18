@@ -13,20 +13,17 @@
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-/*Cores do minimapa*/
-# define MMAP_BG_COLOR	0x000000FF // Preto
-# define MMAP_FG_COLOR	0xFFFFFFFF // Branco
-# define PLAYER_COLOR	0xFF0000FF // vermelho
+# define MMAP_BG_COLOR	0x000000FF
+# define MMAP_FG_COLOR	0xFFFFFFFF
+# define PLAYER_COLOR	0xFF0000FF
 
-/* calculos matemáticos*/
 # define PI 3.1415926535
-# define MOVE_SPEED 1.0 // velocidade da caminhada
-# define ROT_SPEED 1.0 // velocidade de rotação da camera
-# define DR 0.0174533 // Graus para radianos
-# define FOV 60 // Campo de visão
+# define MOVE_SPEED 1.0
+# define ROT_SPEED 1.0
+# define DR 0.0174533
+# define FOV 60
 # define W_MARGIN 0.1
 
-/* configurações tela*/
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 769
 

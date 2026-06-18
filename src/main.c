@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-// ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
 static void	init_game(t_game *game)
 {
 	ft_bzero(game, sizeof(t_game));
