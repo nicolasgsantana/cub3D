@@ -6,12 +6,11 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:52:50 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:13:51 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:43:13 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color)
 {
@@ -19,7 +18,7 @@ static void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color)
 	int	y;
 
 	y = 0;
-	while(y < size - 1)
+	while (y < size - 1)
 	{
 		x = 0;
 		while (x < size - 1)
@@ -31,7 +30,7 @@ static void	fill_block(mlx_image_t *img, int size, t_point pos, uint32_t color)
 	}
 }
 
-static char	get_map_char(char * line, int col)
+static char	get_map_char(char *line, int col)
 {
 	if (col >= (int)ft_strlen(line))
 		return (' ');
@@ -48,7 +47,7 @@ void	render_minimap(t_map *map, mlx_image_t *img)
 
 	size = (WIN_WIDTH / 3) / fmax(map->width, map->height);
 	row = -1;
-	while(++row < map->height)
+	while (++row < map->height)
 	{
 		col = -1;
 		while (++col < map->width)

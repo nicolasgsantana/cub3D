@@ -6,7 +6,7 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:09:58 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:56:18 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,31 @@
 # include "settings.h"
 # include "err_msg.h"
 
-/* Dados mapa*/
 typedef struct s_map
 {
 	char			**map_grid;
 	int				width;
 	int				height;
-	/* Variável travada em 32bits para o RGBA compor uma cor
-	cada letra precisa exatamente 8bits*/
 	uint32_t		floor_color;
 	uint32_t		ceiling_color;
-	/* Transforma os arquivos png após lindo pela mlx42
-	eles são transformados em mlx_texture_t	*/
-	mlx_texture_t	*no_tex; //textura norte
-	mlx_texture_t	*so_tex; //textura sul
-	mlx_texture_t	*ea_tex; // textura leste
-	mlx_texture_t	*we_tex; // textura oeste
-
+	mlx_texture_t	*no_tex;
+	mlx_texture_t	*so_tex;
+	mlx_texture_t	*ea_tex;
+	mlx_texture_t	*we_tex;
 }				t_map;
 
-/* Geometria e matriz*/
 typedef struct s_point
 {
 	int				x;
 	int				y;
 }	t_point;
 
-/* Raycasting  Vetores 2D*/
 typedef struct s_vector
 {
 	double			x;
 	double			y;
 }	t_vector;
 
-/* Raycasting --- Dados de cada Raio disparado pela câmera */
 typedef struct s_ray
 {
 	double			angle;
@@ -68,7 +59,6 @@ typedef struct s_ray
 	double			wall_hit_x;
 }	t_ray;
 
-/* Variáveis de cáculo interno do DDA*/
 typedef struct s_dda
 {
 	double			ray_dir_x;
@@ -96,9 +86,9 @@ typedef struct s_tex_slice
 
 typedef struct s_player
 {
-	t_vector		pos; // Posição
-	t_vector		dir; // Direção (delta)
-	double			angle; // Angulo atual
+	t_vector		pos;
+	t_vector		dir;
+	double			angle;
 }	t_player;
 
 typedef struct s_game
@@ -109,14 +99,11 @@ typedef struct s_game
 	t_player		player;
 }	t_game;
 
-/* Input */
 void	input_hook(void *param);
 
-/* Minimapa*/
 void	render_minimap(t_map *map, mlx_image_t *img);
 void	render_player_2d(t_game *game, mlx_image_t *img);
 
-/* Parser */
 int		parse_cub(char *file, t_game *game);
 int		check_extension(char *filename, char *extension);
 int		parse_textures(char *line, t_game *game);
@@ -124,32 +111,22 @@ int		parse_colors(char *line, t_game *game);
 void	parse_grid(char *line, t_game *game);
 int		validate_map(t_game *game);
 
-/* Raycaster_utils.c */
 double	normalize_angle(double angle);
 void	init_tex_slice(t_tex_slice *slice, t_game *game, t_ray *ray,
-							t_dda *dda);
-int	get_draw_start(t_ray *ray);
-int	get_draw_end(t_ray *ray);
+			t_dda *dda);
+int		get_draw_start(t_ray *ray);
+int		get_draw_end(t_ray *ray);
 
-/* Raycaster.c */
 void	cast_rays(t_game *game);
 
-/* dda.c */
 void	init_dda(t_game *game, t_ray *ray, t_dda *dda);
 void	perform_dda(t_game *game, t_ray *ray, t_dda *dda);
 
-/* utils/clean.c*/
 void	free_split(char **split);
 void	clean_exit(t_game *game, int exit_code);
 void	error_exit(char *msg, t_game *game);
 
-/* Rendering */
 void	render_hook(void *param);
 void	draw_background(t_game *game);
-
-
-
-
-
 
 #endif

@@ -6,18 +6,16 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/14 13:10:53 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:34:40 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ---> INICIALIZAÇÂO DAS ESTRUTURAS ZERADAS <---
 static void	init_game(t_game *game)
 {
 	ft_bzero(game, sizeof(t_game));
 }
-
 
 int	main(int argc, char **argv)
 {

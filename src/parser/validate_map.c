@@ -6,44 +6,38 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:39:57 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/14 18:13:20 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:59:55 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* retorna o caractere emuma posição (x,y)*/
 static char	get_char(char **grid, int x, int y, int max_y)
 {
 	if (y < 0 || y >= max_y)
-		return(' ');
-	if(x < 0 || x >= (int)ft_strlen(grid[y]))
+		return (' ');
+	if (x < 0 || x >= (int)ft_strlen(grid[y]))
 		return (' ');
 	return (grid[y][x]);
 }
 
-/* Extrai as coordenadas iniciais e define para onde a câmera está olhando*/
 static void	set_player_start(t_game *game, int x, int y, char dir)
 {
 	if (game->player.pos.x != 0.0)
 		error_exit("Multiple players found in the file.", game);
-	game->player.pos.x = x + 0.5; //Posicao é no meio exato do bloco.
-	game->player.pos.y = y +0.5; //Posicao é no meio exato do bloco.
+	game->player.pos.x = x + 0.5;
+	game->player.pos.y = y +0.5;
 	if (dir == 'N')
-		game->player.angle = 3 * PI / 2; // 270 graus
+		game->player.angle = 3 * PI / 2;
 	else if (dir == 'S')
-		game->player.angle = PI / 2; // 90 graus
+		game->player.angle = PI / 2;
 	else if (dir == 'E')
-		game->player.angle = 0.0; // 0 graus
+		game->player.angle = 0.0;
 	else if (dir == 'W')
-		game->player.angle = PI; // 180 graus
+		game->player.angle = PI;
 	game->map.map_grid[y][x] = '0';
 }
-/*
-	Analisa as regras de um caractere específico.
-	Checa caracteres inválidos, define o jogador e
-	verifica furos no chão.
-*/
+
 static void	check_map_char(t_game *game, int x, int y, char c)
 {
 	char	**g;
@@ -61,10 +55,10 @@ static void	check_map_char(t_game *game, int x, int y, char c)
 	if (c == '0')
 	{
 		if (get_char(g, x, y -1, h) == ' '
-				|| get_char(g, x, y + 1, h) == ' '
-				|| get_char(g, x - 1, y, h) == ' '
-				|| get_char(g, x + 1, y, h) == ' ')
-				error_exit("Invalid map! The walls are not closed.", game);
+			|| get_char(g, x, y + 1, h) == ' '
+			|| get_char(g, x - 1, y, h) == ' '
+			|| get_char(g, x + 1, y, h) == ' ')
+			error_exit("Invalid map! The walls are not closed.", game);
 	}
 }
 

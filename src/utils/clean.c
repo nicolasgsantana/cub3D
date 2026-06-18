@@ -6,12 +6,12 @@
 /*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 12:41:34 by alessandro        #+#    #+#             */
-/*   Updated: 2026/06/11 22:57:29 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:56:52 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
-/* liberar mtz. bi (map_grid ft_split)*/
+#include "cub3d.h"
+
 void	free_split(char **split)
 {
 	int	i;
@@ -33,13 +33,13 @@ void	clean_exit(t_game *game, int exit_code)
 		exit(exit_code);
 	if (game->map.map_grid)
 		free_split(game->map.map_grid);
-	if(game->map.no_tex)
+	if (game->map.no_tex)
 		mlx_delete_texture(game->map.no_tex);
-	if(game->map.so_tex)
+	if (game->map.so_tex)
 		mlx_delete_texture(game->map.so_tex);
-	if(game->map.ea_tex)
+	if (game->map.ea_tex)
 		mlx_delete_texture(game->map.ea_tex);
-	if(game->map.we_tex)
+	if (game->map.we_tex)
 		mlx_delete_texture(game->map.we_tex);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
