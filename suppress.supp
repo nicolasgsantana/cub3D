@@ -1,0 +1,78 @@
+# ======================================================================
+# Valgrind Suppression File for MLX42 / glibc false positives
+# ======================================================================
+# To use this suppression file, run:
+#   valgrind --suppressions=suppress.supp --leak-check=full -s ./cub3D maps/maze.cub
+# ======================================================================
+
+# ----------------------------------------------------------------------
+# Suppression 1: Invalid read via _dl_dst_count -> expand_dynamic_string_token
+# Matches the first "Invalid read of size 8" in your log
+# ----------------------------------------------------------------------
+{
+   glibc_rpath_dst_count_read_overflow
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   fun:_dl_dst_count
+   fun:expand_dynamic_string_token
+   fun:fillin_rpath.isra.0
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+
+# ----------------------------------------------------------------------
+# Suppression 2: Invalid read via _dl_dst_substitute (no expand in between)
+# Matches the second "Invalid read of size 8" in your log
+# ----------------------------------------------------------------------
+{
+   glibc_rpath_dst_substitute_read_overflow
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   fun:_dl_dst_substitute
+   fun:fillin_rpath.isra.0
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_exception
+   fun:_dl_map_object_deps
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+}
+
+# ----------------------------------------------------------------------
+# Suppression 3: 0-byte leak from glibc's internal dl_find_object cache
+# Matches the "0 bytes in 1 blocks are definitely lost" in your log
+# This is intentional glibc behavior, NOT a leak in your code
+# ----------------------------------------------------------------------
+{
+   glibc_dl_find_object_zero_byte_leak
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:malloc
+   fun:_dl_find_object_update
+   fun:dl_open_worker_begin
+   fun:_dl_catch_exception
+   fun:dl_open_worker
+   fun:_dl_catch_exception
+   fun:_dl_open
+   fun:dlopen_doit
+   fun:_dl_catch_exception
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlopen_implementation
+   fun:dlopen@@GLIBC_2.34
+}
