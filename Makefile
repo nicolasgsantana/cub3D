@@ -17,6 +17,7 @@ SRC = $(addprefix $(SRC_DIR)/,	main.c \
 								minimap/render_map.c \
 								minimap/render_hook.c \
 								input/input_hook.c \
+								input/toggle_mouse.c \
 								parser/parse_colors.c \
 								parser/parse_grid.c \
 								parser/parse_main.c \

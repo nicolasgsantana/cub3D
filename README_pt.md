@@ -45,6 +45,7 @@ Alguns mapas de exemplo já estão disponíveis na pasta `maps/`:
 ### Controles
 - `W` `A` `S` `D`: movimentação;
 - `←` `→` ou mouse: rotação da câmera;
+- `M`: alterna mouse ativo;
 - `ESC`: sair do jogo.
 
 ## Recursos

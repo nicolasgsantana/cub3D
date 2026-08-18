@@ -45,6 +45,7 @@ A few sample maps are already available in the `maps/` folder:
 ### Controls
 - `W` `A` `S` `D`: movement;
 - `←` `→` or mouse: camera rotation;
+- `M`: toggle mouse rotation;
 - `ESC`: quit the game.
 
 ## Resources

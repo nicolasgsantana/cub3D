@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 12:13:03 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/18 17:42:02 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/08/18 13:16:49 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ static void	handle_rotation(t_game *game)
 		game->player.angle -= ROT_SPEED * dt_time;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		game->player.angle += ROT_SPEED * dt_time;
-	mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
-	delta_x = mouse_x - (WIN_WIDTH / 2);
-	if (delta_x != 0)
+	if (game->mouse_active)
 	{
-		game->player.angle += delta_x * MOUSE_SENSITIVITY * dt_time;
+		mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
+		delta_x = mouse_x - (WIN_WIDTH / 2);
+		if (delta_x != 0)
+			game->player.angle += delta_x * MOUSE_SENSITIVITY * dt_time;
 		mlx_set_mouse_pos(game->mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	}
 	if (game->player.angle < 0)
@@ -102,9 +103,9 @@ static void	handle_movement(t_game *game, double *new_x, double *new_y)
 
 void	input_hook(void	*param)
 {
-	t_game	*game;
-	double	new_x;
-	double	new_y;
+	t_game		*game;
+	double		new_x;
+	double		new_y;
 
 	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))

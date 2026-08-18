@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:08:45 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/18 17:56:18 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/08/18 13:21:32 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,12 @@ typedef struct s_game
 	mlx_image_t		*scene_img;
 	t_map			map;
 	t_player		player;
+	bool			mouse_active;
 }	t_game;
 
 void	input_hook(void *param);
+void	key_handler(mlx_key_data_t keydata, void *param);
+void	toggle_mouse(t_game *game);
 
 void	render_minimap(t_map *map, mlx_image_t *img);
 void	render_player_2d(t_game *game, mlx_image_t *img);
