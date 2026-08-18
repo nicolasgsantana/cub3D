@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nde-sant <nde-sant@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: nde-sant <nde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:15:02 by nde-sant          #+#    #+#             */
-/*   Updated: 2026/06/18 17:34:40 by nde-sant         ###   ########.fr       */
+/*   Updated: 2026/08/18 13:22:45 by nde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	main(int argc, char **argv)
 	if (!game.scene_img)
 		error_exit("Failed to create scene image.", &game);
 	mlx_image_to_window(game.mlx, game.scene_img, 0, 0);
+	game.mouse_active = true;
 	mlx_set_cursor_mode(game.mlx, MLX_MOUSE_DISABLED);
 	mlx_set_mouse_pos(game.mlx, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	mlx_key_hook(game.mlx, key_handler, &game);
 	mlx_loop_hook(game.mlx, input_hook, &game);
 	mlx_loop_hook(game.mlx, render_hook, &game);
 	mlx_loop(game.mlx);
