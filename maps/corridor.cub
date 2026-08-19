@@ -1,10 +1,10 @@
-NO ./textures/north.png
-SO ./textures/south.png
-WE ./textures/west.png
-EA ./textures/east.png
+NO ./textures/corridor/metal_shade.png
+SO ./textures/corridor/metal_sunset.png
+WE ./textures/corridor/metal_shade.png
+EA ./textures/corridor/metal_sunset.png
 
-F 80,80,80
-C 20,20,80
+F 80,40,34
+C 231,63,30
 
 111111111111111111111
 100000000000000000001
