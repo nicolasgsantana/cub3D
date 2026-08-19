@@ -1,0 +1,18 @@
+NO ./textures/plaza/flr_painted_shade.png
+SO ./textures/plaza/flr_painted_light.png
+WE ./textures/plaza/flr_painted_light.png
+EA ./textures/plaza/flr_painted_shade.png
+
+F 38,44,40
+C 25,24,59
+
+111111111111111
+100000000000001
+101111101111101
+101000101000101
+100000000000001
+1000000N0000001
+101000101000101
+101111101111101
+100000000000001
+111111111111111

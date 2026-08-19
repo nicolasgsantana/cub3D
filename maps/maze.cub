@@ -1,10 +1,10 @@
-NO ./textures/north.png
-SO ./textures/south.png
-WE ./textures/west.png
-EA ./textures/east.png
+NO ./textures/maze/maze_wall_shade.png
+SO ./textures/maze/maze_wall_light.png
+WE ./textures/maze/maze_wall_light.png
+EA ./textures/maze/maze_wall_shade.png
 
-F 50,120,50
-C 30,30,100
+F 34,0,0
+C 116,7,7
 
 111111111111111
 100010000000001
