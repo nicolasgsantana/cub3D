@@ -1,7 +1,7 @@
 NO ./textures/rooms/white_cat.png
 SO ./textures/rooms/mr_cat.png
-WE ./textures/rooms/smile.png
-EA ./textures/rooms/misery.png
+WE ./textures/rooms/larry.png
+EA ./textures/rooms/maxwell.png
 
 F 198,197,139
 C 228,230,168
